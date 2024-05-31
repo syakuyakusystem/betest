@@ -7,7 +7,7 @@
 
 ## 目的
 人事評価
-勤怠状況を記録、管理、保管し、人事評価に利用してください。
+勤怠状況を記録、管理、保管し、人事評価に利用。
 
 ## アプリケーションURL
 https://github.com/syakuyakusystem/beginner-case
@@ -25,6 +25,7 @@ https://github.com/syakuyakusystem/beginner-case
 * MySQL8.0.26
 
 # ER図
+![ER図](https://github.com/syakuyakusystem/beginner-case/assets/166460196/6eb02198-d53c-4b5d-a72d-f224130cebbd)
 
 # 環境構築
 Dockerビルド
