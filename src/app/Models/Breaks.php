@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Breaks extends Model
 {
     use HasFactory;
+
+    public function timestamp() {
+        return $this->belongsTo('App\Models\Timestamps');
+    }
+
 }

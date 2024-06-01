@@ -15,6 +15,11 @@ class CreateTimestampsTable extends Migration
     {
         Schema::create('timestamps', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->dateTime('start_work');
+            $table->dateTime('end_work')->nullable();
+            $table->date('day');
+            $table->dateTime('totalwork');
             $table->timestamps();
         });
     }

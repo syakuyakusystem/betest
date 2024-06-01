@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Timestamps extends Model
 {
     use HasFactory;
+
+    public function user() {
+        return $this->belongsTo('App\Models\User');
+    }
+
+    public function breaks() {
+        return $this->hasMany('App\Models\Breaks');
+    }
 }
