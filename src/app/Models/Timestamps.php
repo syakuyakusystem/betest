@@ -16,4 +16,11 @@ class Timestamps extends Model
     public function breaks() {
         return $this->hasMany('App\Models\Breaks');
     }
+
+    protected $fillable = [
+        'start_work',
+        'end_work',
+        'day',
+        'totalwork',
+    ];
 }
