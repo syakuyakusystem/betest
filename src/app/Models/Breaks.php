@@ -12,5 +12,10 @@ class Breaks extends Model
     public function timestamp() {
         return $this->belongsTo('App\Models\Timestamps');
     }
-
+    
+    protected $fillable = [
+        'start_break',
+        'end_break',
+        'totalbreak',
+    ];
 }
