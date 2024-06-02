@@ -18,6 +18,7 @@ class Timestamps extends Model
     }
 
     protected $fillable = [
+        'user_id',
         'start_work',
         'end_work',
         'day',

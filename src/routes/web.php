@@ -23,8 +23,11 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/work', [HomeController::class, 'work'])->name('work');
-Route::post('/work', [HomeController::class, 'work'])->name('work');
+Route::get('/work', [TimeStampController::class, 'work'])->name('work');
+Route::post('/work', [TimeStampController::class, 'work'])->name('work');
 
 Route::get('/attendance', [TimeStampController::class, 'attendance'])->name('attendance');
 Route::get('/logout', [TimeStampController::class, 'logout'])->name('logout');
+
+Route::get('/home', [TimeStampController::class, 'home'])->name('home');
+Route::post('/home', [TimeStampController::class, 'home'])->name('home');

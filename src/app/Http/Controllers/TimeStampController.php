@@ -4,9 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Timestamps;
-use App\Models\Work;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Carbon;
 
 class TimeStampController extends Controller
 {
@@ -38,7 +37,13 @@ class TimeStampController extends Controller
 
     public function home()
     {
-        return view('home');
+        $now_date = Carbon::now()->format('Y-m-d');
+        $user_id = Auth::user()->id;
+        $confirm_date = Timestamps::where('user_id', $user_id)->whereDate('created_at', $now_date)->first();
+
+        $status = $confirm_date ? 1 : 0;
+
+        return view('home', compact('status'));
     }
 
  
@@ -99,5 +104,47 @@ class TimeStampController extends Controller
     }
 
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     
+    public function punch()
+    {
+        $now_date = Carbon::now()->format('Y-m-d');
+        $user_id = Auth::user()->id;
+        $confirm_date = Timestamps::where('user_id', $user_id)->whereDate('created_at', $now_date)->first();
+
+   
+
+        return view('index');
+    }
+
+    public function work(Request $request)
+    {
+        $user_id = Auth::user()->id;
+        $now = Carbon::now();
+
+        if ($request->has('start_work')) {
+            Timestamps::create([
+            'user_id' => $user_id,
+            'start_work' => $now,
+            'day' => $now->toDateString(), 
+            'totalwork' => $now,
+            ]);
+       } elseif ($request->has('end_work')) {
+            $today_timestamp = Timestamps::where('user_id', $user_id)
+                ->whereDate('day', $now->toDateString())
+                ->first();
+
+            if ($today_timestamp) {
+                $today_timestamp->end_work = $now;
+                $start_work = new Carbon($today_timestamp->start_work);
+                $today_timestamp->totalwork = $start_work->diff($now)->format('%H:%I:%S');
+                $today_timestamp->save();
+            }
+        }
+
+        return redirect()->route('home');
+    }
 }
