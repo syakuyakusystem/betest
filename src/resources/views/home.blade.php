@@ -16,11 +16,11 @@
            @csrf
             <div class="card">
              <div class="card-body">
-            
+               @if($status == 0)
                 <button class="time-form__button-submit" type="submit" name="start_work">勤務開始</button>
-          
+               @else
                 <button class="time-form__button-submit" type="submit" name="start_work" disabled>勤務開始</button>
-             
+               @endif
              </div>
             </div>
            </form>
@@ -31,11 +31,11 @@
             @csrf
             <div class="card">
              <div class="card-body">
-             
+               @if($status == 1)
                 <button class="time-form__button-submit" type="submit" name="end_work">勤務終了</button>
-        
+               @else
                 <button class="time-form__button-submit" type="submit" name="end_work" disabled>勤務終了</button>
-            
+               @endif
              </div>
             </div>
            </form>
@@ -48,11 +48,11 @@
             @csrf
             <div class="card">
              <div class="card-body">
-            
+        
                 <button class="time-form__button-submit" type="submit" name="start_break">休憩開始</button>
-            
+    
                 <button class="time-form__button-submit" type="submit" name="start_break" disabled>休憩開始</button>
-             
+        
              </div>
             </div>
            </form>
@@ -65,9 +65,9 @@
              <div class="card-body">
              
                 <button class="time-form__button-submit" type="submit" name="end_break">休憩終了</button>
-             
+          
                 <button class="time-form__button-submit" type="submit" name="end_break" disabled>休憩終了</button>
-             
+         
              </div>
             </div>
            </form>
