@@ -1,0 +1,31 @@
+.py-4 {
+    background-color: rgb(241, 241, 235);
+}
+
+.menu {
+    display: flex;
+    justify-content: end;
+}
+
+.fotter {
+    text-align: center;
+}
+
+.utf-8 {
+    text-align: center !important;
+}
+
+.nav-link {
+    text-align: center;
+}
+
+table {
+    display: flex;
+    justify-content: center;
+}
+
+button {
+    border: none;
+    background-color: white;
+    padding: 30px 60px;
+}
