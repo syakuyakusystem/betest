@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TimeStampController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,3 +23,8 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::get('/work', [HomeController::class, 'work'])->name('work');
+Route::post('/work', [HomeController::class, 'work'])->name('work');
+
+Route::get('/attendance', [TimeStampController::class, 'attendance'])->name('attendance');
+Route::get('/logout', [TimeStampController::class, 'logout'])->name('logout');

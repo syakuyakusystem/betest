@@ -5,10 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Timestamps;
 use App\Models\Work;
-use App\Models\Break;
-use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+
 class TimeStampController extends Controller
 {
     /**
@@ -18,9 +17,8 @@ class TimeStampController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('attendance');
     }
-
 
 
     /**
@@ -28,11 +26,22 @@ class TimeStampController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function attendance()
     {
-        return view('home.create');
+        return view('attendance');
     }
 
+    public function logout()
+    {
+        return view('login');
+    }
+
+    public function home()
+    {
+        return view('home');
+    }
+
+ 
     /**
      * Store a newly created resource in storage.
      *
@@ -88,4 +97,7 @@ class TimeStampController extends Controller
     {
         //
     }
+
+
+    
 }
