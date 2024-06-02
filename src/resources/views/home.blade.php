@@ -12,7 +12,7 @@
       <table>       
         <tr>
          <th>
-          <form class="time-form" action="" method="get">
+          <form class="time-form" action="{{ route('work') }}" method="post">
            @csrf
             <div class="card">
              <div class="card-body">
@@ -27,7 +27,7 @@
          </th>
 
          <th>
-          <form class="time-form" action="" method="get">
+          <form class="time-form" action="" method="post">
             @csrf
             <div class="card">
              <div class="card-body">
@@ -44,7 +44,7 @@
 
         <tr>
          <td>
-          <form class="time-form" action="" method="get">
+          <form class="time-form" action="" method="post">
             @csrf
             <div class="card">
              <div class="card-body">
@@ -59,7 +59,7 @@
          </td>
 
          <td>
-          <form class="time-form" action="" method="get">
+          <form class="time-form" action="" method="post">
             @csrf
             <div class="card">
              <div class="card-body">

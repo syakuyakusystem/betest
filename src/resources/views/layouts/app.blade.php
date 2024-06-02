@@ -78,14 +78,10 @@
                             </li>
 
                             <div class="menu">
-                              <a class="dropdown-item" href="{{ route('logout') }}"
-                               onclick="event.preventDefault();
-                                     document.getElementById('logout-form').submit();">
+                              <a class="dropdown-item" href="{{ route('home') }}">
                                  ホーム
                               </a>
-                              <a class="dropdown-item" href="{{ route('logout') }}"
-                               onclick="event.preventDefault();
-                                     document.getElementById('logout-form').submit();">
+                              <a class="dropdown-item" href="{{ route('attendance') }}">
                                  日付一覧
                               </a>
                               <a class="dropdown-item" href="{{ route('logout') }}"
