@@ -9,37 +9,68 @@
           {{ Auth::user()->name }}さんお疲れ様です！
       </a>
      
-      <table>
+      <table>       
         <tr>
          <th>
-          <div class="card">
-            <div class="card-body">
-              <button>勤務開始</button>
+          <form class="time-form" action="" method="get">
+           @csrf
+            <div class="card">
+             <div class="card-body">
+            
+                <button class="time-form__button-submit" type="submit" name="start_work">勤務開始</button>
+          
+                <button class="time-form__button-submit" type="submit" name="start_work" disabled>勤務開始</button>
+             
+             </div>
             </div>
-          </div>
+           </form>
          </th>
+
          <th>
-          <div class="card">
-            <div class="card-body">
-              <button>勤務終了</button>
+          <form class="time-form" action="" method="get">
+            @csrf
+            <div class="card">
+             <div class="card-body">
+             
+                <button class="time-form__button-submit" type="submit" name="end_work">勤務終了</button>
+        
+                <button class="time-form__button-submit" type="submit" name="end_work" disabled>勤務終了</button>
+            
+             </div>
             </div>
-          </div>
+           </form>
          </th>
         </tr>
+
         <tr>
          <td>
-          <div class="card">
-            <div class="card-body">
-              <button>休憩開始</button>
+          <form class="time-form" action="" method="get">
+            @csrf
+            <div class="card">
+             <div class="card-body">
+            
+                <button class="time-form__button-submit" type="submit" name="start_break">休憩開始</button>
+            
+                <button class="time-form__button-submit" type="submit" name="start_break" disabled>休憩開始</button>
+             
+             </div>
             </div>
-          </div>
+           </form>
          </td>
+
          <td>
-          <div class="card">
-            <div class="card-body">
-              <button>休憩終了</button>
+          <form class="time-form" action="" method="get">
+            @csrf
+            <div class="card">
+             <div class="card-body">
+             
+                <button class="time-form__button-submit" type="submit" name="end_break">休憩終了</button>
+             
+                <button class="time-form__button-submit" type="submit" name="end_break" disabled>休憩終了</button>
+             
+             </div>
             </div>
-          </div>
+           </form>
          </td>
         </tr>
       </table> 
