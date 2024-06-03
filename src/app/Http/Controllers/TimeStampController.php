@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Timestamps;
+use App\Models\Breaks;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
 
@@ -36,15 +37,27 @@ class TimeStampController extends Controller
     }
 
     public function home()
-    {
-        $now_date = Carbon::now()->format('Y-m-d');
-        $user_id = Auth::user()->id;
-        $confirm_date = Timestamps::where('user_id', $user_id)->whereDate('created_at', $now_date)->first();
+{
+    $now_date = Carbon::now()->format('Y-m-d');
+    $user_id = Auth::user()->id;
+    $confirm_date = Timestamps::where('user_id', $user_id)->whereDate('created_at', $now_date)->first();
 
-        $status = $confirm_date ? 1 : 0;
+    // 初期状態を勤務前（0）に設定
+    $status = 0;
 
-        return view('home', compact('status'));
+    if ($confirm_date) {
+        // 勤務中（1）
+        $status = 1;
+
+        // 休憩開始のレコードがあり、休憩終了のレコードがない場合は休憩中（2）
+        $break = Breaks::where('timestamps_id', $confirm_date->id)->whereNotNull('start_break')->whereNull('end_break')->first();
+        if ($break) {
+            $status = 2;
+        }
     }
+
+    return view('home', compact('status'));
+}
 
  
     /**
@@ -109,6 +122,7 @@ class TimeStampController extends Controller
         $this->middleware('auth');
     }
     
+    // 画面表示
     public function punch()
     {
         $now_date = Carbon::now()->format('Y-m-d');
@@ -120,6 +134,7 @@ class TimeStampController extends Controller
         return view('index');
     }
 
+    // 勤務開始・勤務終了ボタン
     public function work(Request $request)
     {
         $user_id = Auth::user()->id;
@@ -127,12 +142,12 @@ class TimeStampController extends Controller
 
         if ($request->has('start_work')) {
             Timestamps::create([
-            'user_id' => $user_id,
-            'start_work' => $now,
-            'day' => $now->toDateString(), 
-            'totalwork' => $now,
+                'user_id' => $user_id,
+                'start_work' => $now,
+                'day' => $now->toDateString(), 
+                'totalwork' => $now,
             ]);
-       } elseif ($request->has('end_work')) {
+        } elseif ($request->has('end_work')) {
             $today_timestamp = Timestamps::where('user_id', $user_id)
                 ->whereDate('day', $now->toDateString())
                 ->first();
@@ -143,8 +158,37 @@ class TimeStampController extends Controller
                 $today_timestamp->totalwork = $start_work->diff($now)->format('%H:%I:%S');
                 $today_timestamp->save();
             }
-            
+        } elseif ($request->has('start_break')) {
+            $today_timestamp = Timestamps::where('user_id', $user_id)
+                ->whereDate('day', $now->toDateString())
+                ->first();
+
+            if ($today_timestamp) {
+                Breaks::create([
+                    'timestamps_id' => $today_timestamp->id,
+                    'start_break' => $now,
+                    'totalbreak' => null,
+                ]);
+            }
+        } elseif ($request->has('end_break')) {
+            $today_timestamp = Timestamps::where('user_id', $user_id)
+                ->whereDate('day', $now->toDateString())
+                ->first();
+
+            if ($today_timestamp) {
+                $break = Breaks::where('timestamps_id', $today_timestamp->id)
+                    ->whereNull('end_break')
+                    ->first();
+
+                if ($break) {
+                    $break->end_break = $now;
+                    $start_break = new Carbon($break->start_break);
+                    $break->totalbreak = $start_break->diff($now)->format('%H:%I:%S');
+                    $break->save();
+                }
+            }
         }
+
         return redirect()->route('home');
     }
 }
