@@ -9,13 +9,16 @@ class Breaks extends Model
 {
     use HasFactory;
 
-    public function timestamp() {
+    public function timestamps() {
         return $this->belongsTo('App\Models\Timestamps');
     }
     
     protected $fillable = [
+        'timestamps_id',
         'start_break',
         'end_break',
         'totalbreak',
     ];
+
+    
 }

@@ -26,6 +26,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/work', [TimeStampController::class, 'work'])->name('work');
 Route::post('/work', [TimeStampController::class, 'work'])->name('work');
 
+
 Route::get('/attendance', [TimeStampController::class, 'attendance'])->name('attendance');
 Route::get('/logout', [TimeStampController::class, 'logout'])->name('logout');
 

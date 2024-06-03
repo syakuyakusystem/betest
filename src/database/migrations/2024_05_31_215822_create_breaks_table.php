@@ -18,7 +18,7 @@ class CreateBreaksTable extends Migration
             $table->foreignId('timestamps_id')->constrained()->onDelete('cascade');
             $table->dateTime('start_break')->nullable();
             $table->dateTime('end_break')->nullable();
-            $table->dateTime('totalbreak');
+            $table->time('totalbreak')->nullable();
             $table->timestamps();
         });
     }

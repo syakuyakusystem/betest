@@ -44,30 +44,30 @@
 
         <tr>
          <td>
-          <form class="time-form" action="" method="post">
+          <form class="time-form" action="{{ route('work') }}" method="post">
             @csrf
             <div class="card">
              <div class="card-body">
-        
+               @if($status == 1)
                 <button class="time-form__button-submit" type="submit" name="start_break">休憩開始</button>
-    
+               @else
                 <button class="time-form__button-submit" type="submit" name="start_break" disabled>休憩開始</button>
-        
+               @endif
              </div>
             </div>
            </form>
          </td>
 
          <td>
-          <form class="time-form" action="" method="post">
+          <form class="time-form" action="{{ route('work') }}" method="post">
             @csrf
             <div class="card">
              <div class="card-body">
-             
+               @if($status == 2)
                 <button class="time-form__button-submit" type="submit" name="end_break">休憩終了</button>
-          
+               @else
                 <button class="time-form__button-submit" type="submit" name="end_break" disabled>休憩終了</button>
-         
+               @endif
              </div>
             </div>
            </form>
