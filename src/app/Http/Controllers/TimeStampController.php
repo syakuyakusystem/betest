@@ -143,8 +143,8 @@ class TimeStampController extends Controller
                 $today_timestamp->totalwork = $start_work->diff($now)->format('%H:%I:%S');
                 $today_timestamp->save();
             }
+            
         }
-
         return redirect()->route('home');
     }
 }

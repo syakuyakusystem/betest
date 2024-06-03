@@ -27,7 +27,7 @@
          </th>
 
          <th>
-          <form class="time-form" action="" method="post">
+          <form class="time-form" action="{{ route('work') }}" method="post">
             @csrf
             <div class="card">
              <div class="card-body">
