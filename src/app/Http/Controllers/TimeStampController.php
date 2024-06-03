@@ -29,30 +29,36 @@ class TimeStampController extends Controller
     public function attendance()
 {
     $user_id = Auth::user()->id;
-    
-    $workSummaries = Timestamps::where('user_id', $user_id)
-        ->with(['breaks'])
-        ->get()
-        ->map(function ($timestamp) {
-            $totalBreakTime = $timestamp->breaks->reduce(function ($carry, $break) {
+    $timestamps = Timestamps::where('user_id', $user_id)->with('breaks')->get();
+
+    $workSummaries = [];
+
+    foreach ($timestamps as $timestamp) {
+        $totalBreakSeconds = 0;
+
+        foreach ($timestamp->breaks as $break) {
+            if ($break->end_break) {
                 $startBreak = new Carbon($break->start_break);
                 $endBreak = new Carbon($break->end_break);
-                return $carry + $startBreak->diffInSeconds($endBreak);
-            }, 0);
+                $totalBreakSeconds += $startBreak->diffInSeconds($endBreak);
+            }
+        }
 
-            $startWork = new Carbon($timestamp->start_work);
-            $endWork = new Carbon($timestamp->end_work);
-            $totalWorkTime = $startWork->diffInSeconds($endWork);
+        $totalBreak = gmdate('H:i:s', $totalBreakSeconds);
 
-            $netWorkTime = $totalWorkTime - $totalBreakTime;
+        $startWork = new Carbon($timestamp->start_work);
+        $endWork = new Carbon($timestamp->end_work);
+        $totalWorkSeconds = $startWork->diffInSeconds($endWork) - $totalBreakSeconds;
+        $totalWork = gmdate('H:i:s', $totalWorkSeconds);
 
-            return [
-                'day' => $timestamp->day,
-                'start_work' => $timestamp->start_work,
-                'end_work' => $timestamp->end_work,
-                'totalwork' => gmdate('H:i:s', $netWorkTime),
-            ];
-        });
+        $workSummaries[] = [
+            'day' => $timestamp->day,
+            'start_work' => $timestamp->start_work,
+            'end_work' => $timestamp->end_work,
+            'totalbreak' => $totalBreak,
+            'totalwork' => $totalWork,
+        ];
+    }
 
     return view('attendance', compact('workSummaries'));
 }
@@ -170,9 +176,9 @@ class TimeStampController extends Controller
         if ($request->has('start_work')) {
             Timestamps::create([
                 'user_id' => $user_id,
-                'start_work' => $now,
+                'start_work' => $now->format('H:i:s'),
                 'day' => $now->toDateString(), 
-                'totalwork' => $now,
+                'totalwork' => '00:00:00', 
             ]);
         } elseif ($request->has('end_work')) {
             $today_timestamp = Timestamps::where('user_id', $user_id)
@@ -180,7 +186,7 @@ class TimeStampController extends Controller
                 ->first();
 
             if ($today_timestamp) {
-                $today_timestamp->end_work = $now;
+                $today_timestamp->end_work = $now->format('H:i:s');
                 $start_work = new Carbon($today_timestamp->start_work);
                 $today_timestamp->totalwork = $start_work->diff($now)->format('%H:%I:%S');
                 $today_timestamp->save();

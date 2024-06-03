@@ -20,10 +20,10 @@
           {{ Auth::user()->name }}
           </a>
         </td>
-        <td>{{ $summary['day'] }}</td>
-        <td>b</td>
-        <td>d/td>
-        <td>e</td>
+        <td>{{ $summary['start_work'] }}</td>
+        <td>{{ $summary['end_work'] }}</td>
+        <td>{{ $summary['totalbreak'] }}</td>
+        <td>{{ $summary['totalwork'] }}</td>
       </tr>
  @endforeach
     </table>
