@@ -6,7 +6,7 @@
     <p>ここに月の表示</p>
     
     <table>
-      <tr>
+      <tr class="attendancetable">
         <th>名前</th>
         <th>勤務開始</th>
         <th>勤務終了</th>
