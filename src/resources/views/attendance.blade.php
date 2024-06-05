@@ -23,6 +23,7 @@
         <th>休憩時間</th>
         <th>勤務時間</th>
       </tr>
+
  @foreach($workSummaries as $summary)
       <tr class="attendancebox">
         <td>{{ $summary['user'] }}</td>
@@ -32,6 +33,7 @@
         <td>{{ $summary['totalwork'] }}</td>
       </tr>
  @endforeach
+ 
     </table>
 
     <div class="pagination">

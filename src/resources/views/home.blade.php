@@ -6,7 +6,7 @@
     <div class="col-md-8">
 
       <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-          {{ Auth::user()->name }}さんお疲れ様です！
+        {{ Auth::user()->name }}さんお疲れ様です！
       </a>
      
       <table>       
