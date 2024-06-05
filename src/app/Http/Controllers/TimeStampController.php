@@ -7,6 +7,7 @@ use App\Models\Timestamps;
 use App\Models\Breaks;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
+use Illuminate\Pagination\Paginator;
 
 class TimeStampController extends Controller
 {
@@ -19,41 +20,43 @@ class TimeStampController extends Controller
 
     
     // 管理画面で勤務時間から休憩時間をマイナスして表示
-    public function attendance()
+    public function attendance(Request $request)
     {
-        $user_id = Auth::user()->id;
-        $timestamps = Timestamps::where('user_id', $user_id)->with('breaks')->get();
+        $currentDate = $request->input('date') ?? Carbon::now()->format('Y-m-d'); // デフォルトで現在の日付を使用
+        $date = Carbon::createFromFormat('Y-m-d', $currentDate);
 
-        $workSummaries = [];
+        // 前の日と次の日を計算
+        $previousDate = $date->copy()->subDay()->format('Y-m-d');
+        $nextDate = $date->copy()->addDay()->format('Y-m-d');
 
-        foreach ($timestamps as $timestamp) {
-            $totalBreakSeconds = 0;
+        // 指定された日のタイムスタンプを取得し、ページネーションを設定
+        $timestamps = Timestamps::with('breaks', 'user')
+            ->whereDate('day', $date)
+            ->paginate(5);
 
-        foreach ($timestamp->breaks as $break) {
-            if ($break->end_break) {
+        // 勤務サマリーを計算
+            $workSummaries = $timestamps->map(function ($timestamp) {
+            $totalBreak = $timestamp->breaks->reduce(function ($carry, $break) {
                 $startBreak = new Carbon($break->start_break);
                 $endBreak = new Carbon($break->end_break);
-                $totalBreakSeconds += $startBreak->diffInSeconds($endBreak);
-                }
-            }
-
-            $totalBreak = gmdate('H:i:s', $totalBreakSeconds);
+                return $carry + $startBreak->diffInSeconds($endBreak);
+            }, 0);
 
             $startWork = new Carbon($timestamp->start_work);
             $endWork = new Carbon($timestamp->end_work);
-            $totalWorkSeconds = $startWork->diffInSeconds($endWork) - $totalBreakSeconds;
-            $totalWork = gmdate('H:i:s', $totalWorkSeconds);
-   
-            $workSummaries[] = [
-                'day' => $timestamp->day,
-                'start_work' => $timestamp->start_work,
-                'end_work' => $timestamp->end_work,
-                'totalbreak' => $totalBreak,
-                'totalwork' => $totalWork,
-            ];
-        }
+            $totalWork = $startWork->diffInSeconds($endWork) - $totalBreak;
 
-        return view('attendance', compact('workSummaries'));
+            return [
+                'user' => $timestamp->user->name,
+                'start_work' => $startWork->format('H:i:s'),
+                'end_work' => $endWork->format('H:i:s'),
+                'totalbreak' => gmdate('H:i:s', $totalBreak),
+                'totalwork' => gmdate('H:i:s', $totalWork),
+            ];
+        });
+
+        return view('attendance', compact('timestamps', 'workSummaries', 'currentDate', 'previousDate', 'nextDate'));
+
     }
 
     // ログアウト処理
