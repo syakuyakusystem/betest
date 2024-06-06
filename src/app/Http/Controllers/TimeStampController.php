@@ -16,7 +16,6 @@ class TimeStampController extends Controller
     {
         return view('attendance');
     }
-
     
     // 管理画面で勤務時間から休憩時間をマイナスして表示
     public function attendance(Request $request)
