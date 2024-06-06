@@ -25,7 +25,8 @@ https://github.com/syakuyakusystem/beginner-case
 * MySQL8.0.26
 
 # ER図
-![ER図](https://github.com/syakuyakusystem/beginner-case/assets/166460196/6eb02198-d53c-4b5d-a72d-f224130cebbd)
+![ER図](https://github.com/syakuyakusystem/beginner-case/assets/166460196/f99e7199-06ab-4ddb-bcad-b7564d79dcbf)
+
 
 # 環境構築
 Dockerビルド
