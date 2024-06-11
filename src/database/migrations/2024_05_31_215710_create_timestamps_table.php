@@ -20,6 +20,7 @@ class CreateTimestampsTable extends Migration
             $table->time('end_work')->nullable();
             $table->date('day');
             $table->time('totalwork');
+            $table->time('worktime')->nullable();
             $table->timestamps();
         });
     }

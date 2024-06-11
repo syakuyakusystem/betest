@@ -17,8 +17,12 @@ class Breaks extends Model
         'timestamps_id',
         'start_break',
         'end_break',
-        'totalbreak',
+        'breaktime',
     ];
 
+    public function timestamp()
+    {
+        return $this->belongsTo(Timestamps::class);
+    }
     
 }

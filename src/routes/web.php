@@ -21,14 +21,17 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
 
-Route::get('/work', [TimeStampController::class, 'work'])->name('work');
+Route::get('/work', [TimeStampController::class, 'work']);
 Route::post('/work', [TimeStampController::class, 'work'])->name('work');
 
-
 Route::get('/attendance', [TimeStampController::class, 'attendance'])->name('attendance');
-Route::get('/logout', [TimeStampController::class, 'logout'])->name('logout');
 
-Route::get('/home', [TimeStampController::class, 'home'])->name('home');
+Route::get('/home', [TimeStampController::class, 'home']);
 Route::post('/home', [TimeStampController::class, 'home'])->name('home');
+
+Route::get('/logout', [TimeStampController::class, 'login']);
+
+Route::get('register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+Route::post('register', [RegisterController::class, 'register']);

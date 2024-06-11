@@ -28,14 +28,15 @@
         <td>{{ $summary['user'] }}</td>
         <td>{{ $summary['start_work'] }}</td>
         <td>{{ $summary['end_work'] }}</td>
-        <td>{{ $summary['totalbreak'] }}</td>
+        <td>{{ $summary['breaktime'] }}</td>
         <td>{{ $summary['totalwork'] }}</td>
       </tr>
     @endforeach 
     </table>
 
     <div class="pagination">
-      <p class="pagination">{{ $timestamps->links() }}</p>
+      <!-- 日付ごとにページネーション -->
+      <p class="pagination">{{ $timestamps->appends(['date' => $currentDate])->links() }}</p>
     </div>
  </div>
 </div>
