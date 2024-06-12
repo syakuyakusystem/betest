@@ -165,7 +165,6 @@ class TimeStampController extends Controller
     public function logout()
     {
         Auth::logout();
-        return redirect()->route('register');
+        return redirect()->route('login');
     }
-
 }

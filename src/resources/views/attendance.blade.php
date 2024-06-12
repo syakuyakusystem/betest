@@ -1,6 +1,6 @@
-@extends('layouts.app')
+@extends('layouts.common')
 
-@section('content')
+@section('common')
 <div class="container">
  <div class="attendance">
     <div class="d-flex justify-content-between mb-4">

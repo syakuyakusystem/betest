@@ -31,7 +31,4 @@ Route::get('/attendance', [TimeStampController::class, 'attendance'])->name('att
 Route::get('/home', [TimeStampController::class, 'home']);
 Route::post('/home', [TimeStampController::class, 'home'])->name('home');
 
-Route::get('/logout', [TimeStampController::class, 'login']);
-
-Route::get('register', [RegisterController::class, 'showRegistrationForm'])->name('register');
-Route::post('register', [RegisterController::class, 'register']);
+Route::post('/logout', [TimeStampController::class, 'logout'])->name('logout');
