@@ -4,18 +4,16 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+            <div>
+                <h4 class="hederbox">会員登録</h4>
 
-                <div class="card-body">
+                <div class="card-body postbody">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
-                        <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                        <div class="row mb-3 hederboxrow">
+                            <div class="formbox hederboxrow">
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror inputbox" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="名前">
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -25,11 +23,9 @@
                             </div>
                         </div>
 
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                        <div class="row mb-3 hederboxrow">
+                            <div class="formbox hederboxrow">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror inputbox" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="メールアドレス">
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -39,11 +35,9 @@
                             </div>
                         </div>
 
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                        <div class="row mb-3 hederboxrow">
+                            <div class="formbox hederboxrow">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror inputbox" name="password" required autocomplete="new-password" placeholder="パスワード">
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -53,20 +47,27 @@
                             </div>
                         </div>
 
-                        <div class="row mb-3">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                        <div class="row mb-3 hederboxrow">
+                            <div class="formbox hederboxrow">
+                                <input id="password-confirm" type="password" class="form-control inputbox" name="password_confirmation" required autocomplete="new-password" placeholder="確認用パスワード">
                             </div>
                         </div>
 
-                        <div class="row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
+                        <div class="addbtn">
+                            <div>
+                                <button type="submit" class="btn btn-primary underline">
+                                    会員登録
                                 </button>
                             </div>
+                        </div>
+
+                        <div>
+                          <p class="textlink">アカウントをお持ちの方はこちらから</p>
+                          @if (Route::has('login'))
+                          <div class="bluelink">
+                            <a href="{{ route('login') }}" class="underline">ログイン</a>
+                          </div>
+                          @endif
                         </div>
                     </form>
                 </div>
