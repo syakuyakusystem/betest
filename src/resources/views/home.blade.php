@@ -14,7 +14,7 @@
          <th>
           <form class="time-form" action="{{ route('work') }}" method="post">
            @csrf
-            <div class="card">
+            <div class="card cardbox">
              <div class="card-body">
                @if($status == 0)
                 <button class="time-form__button-submit" type="submit" name="start_work">勤務開始</button>
@@ -29,7 +29,7 @@
          <th>
           <form class="time-form" action="{{ route('work') }}" method="post">
             @csrf
-            <div class="card">
+            <div class="card cardbox">
              <div class="card-body">
                @if($status == 1)
                 <button class="time-form__button-submit" type="submit" name="end_work">勤務終了</button>
@@ -46,7 +46,7 @@
          <td>
           <form class="time-form" action="{{ route('work') }}" method="post">
             @csrf
-            <div class="card">
+            <div class="card cardbox">
              <div class="card-body">
                @if($status == 1)
                 <button class="time-form__button-submit" type="submit" name="start_break">休憩開始</button>
@@ -61,7 +61,7 @@
          <td>
           <form class="time-form" action="{{ route('work') }}" method="post">
             @csrf
-            <div class="card">
+            <div class="card cardbox">
              <div class="card-body">
                @if($status == 2)
                 <button class="time-form__button-submit" type="submit" name="end_break">休憩終了</button>

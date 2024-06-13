@@ -35,6 +35,8 @@
                             </div>
                         </div>
 
+
+                        <!-- この下のコメントを外すとログイン状態を保持するチェックボックス実装 -->
                         <!-- <div class="row mb-3">
                             <div class="col-md-6 offset-md-4">
                                 <div class="form-check">
@@ -51,19 +53,20 @@
                             <div>
                                 <button type="submit" class="btn btn-primary underline">
                                     {{ __('Login') }}
-                                </button>
+                                </button>                                
+                            </div>
 
+                            <!-- この下のコメントを外すとパスワードを忘れた場合にメールで確認し再登録のリンク実装 -->
+                            <!-- <div>
                                 @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
                                         {{ __('Forgot Your Password?') }}
                                     </a>
                                 @endif
-                            </div>
-                        </div>
+                            </div> -->
 
-                        <div>
                           <p class="textlink">アカウントをお持ちでない方はこちらから</p>
-                          @if (Route::has('register'))
+                            @if (Route::has('register'))
                           <div class="bluelink">
                             <a href="{{ route('register') }}"underline">会員登録</a>
                           </div>
