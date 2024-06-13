@@ -108,4 +108,12 @@ return [
 
     'password_timeout' => 10800,
 
+    // 'verify' => [
+    //     'middleware' => 'auth',
+    //     'throttle' => '6,1',
+    //     'redirect_to' => 'verification.notice',
+    //     'username' => 'email',
+    //     'email' => 'emails.verify',
+    // ],
+
 ];

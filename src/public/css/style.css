@@ -29,7 +29,7 @@ table {
 button {
     border: none;
     background-color: white;
-    padding: 20px 73px;
+    padding: 50px 118px;
     
 }
 
@@ -112,4 +112,8 @@ button {
 
 .navbar-brand {
     font-size: 23px;
+}
+
+.cardbox {
+    margin: 10px 10px;
 }
