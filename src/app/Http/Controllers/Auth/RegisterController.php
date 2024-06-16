@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -22,7 +23,27 @@ class RegisterController extends Controller
     |
     */
 
-    use RegistersUsers;
+    use RegistersUsers {
+        // 登録後に自動ログインしないようにするために、traitのregisterメソッドをオーバーライドします
+        register as traitRegister;
+    }
+
+    // このメソッドを追加して、登録後の処理をカスタマイズします
+    public function register(Request $request)
+    {
+        $validator = $this->validator($request->all());
+        $validator->validate();
+
+        $user = $this->create($request->all());
+
+        // 登録後に自動ログインしないようにするために、ログイン処理を削除します
+        // $this->guard()->login($user);
+
+        // ユーザーにメール送信（通知）を行う
+        $user->sendEmailVerificationNotification();
+
+        return redirect('/login')->with('status', '登録が完了しました。登録したメールアドレスに届いたリンクをクリックしてログインしてください。');
+    }
 
     /**
      * Where to redirect users after registration.

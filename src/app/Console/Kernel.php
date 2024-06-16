@@ -15,7 +15,15 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->call(function () {
+        $activeTimestamps = Timestamp::where('is_active', true)->get();
+        
+        foreach ($activeTimestamps as $timestamp) {
+            $timestamp->end_time = now()->setTime(23, 59, 59);
+            $timestamp->is_active = false;
+            $timestamp->save();
+        }
+    })->dailyAt('00:00');
     }
 
     /**

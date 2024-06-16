@@ -20,6 +20,7 @@ class CreateBreaksTable extends Migration
             $table->time('end_break')->nullable();
             $table->time('breaktime')->nullable();
             $table->timestamps();
+            $table->boolean('is_active')->default(true);
         });
     }
 
