@@ -117,3 +117,7 @@ button {
 .cardbox {
     margin: 10px 10px;
 }
+
+.titlebox {
+    text-align: center;
+}

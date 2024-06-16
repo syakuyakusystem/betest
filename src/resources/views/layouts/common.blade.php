@@ -74,12 +74,15 @@
                         <div class="menu">
                             <a class="dropdown-item" href="{{ route('home') }}">ホーム</a>
 
-                            <a class="dropdown-item" href="{{ route('attendance') }}">日付一覧</a>
+                            <a class="dropdown-item" href="{{ route('individual') }}">{{ Auth::user()->name }}さんの勤怠表</a>
+
+                            <a class="dropdown-item" href="{{ route('attendance') }}">全体勤怠表</a>
+
+                            <a class="dropdown-item" href="{{ route('user') }}">ユーザー</a>
 
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                               @csrf
                             </form>
-
                             <a class="dropdown-item" href="{{ route('logout') }}"
                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                               ログアウト

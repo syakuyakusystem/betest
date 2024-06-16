@@ -7,6 +7,8 @@ use App\Models\Timestamps;
 use App\Models\Breaks;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
+use Illuminate\Console\Scheduling\Schedule;
+use App\Models\User;
 
 class TimeStampController extends Controller
 {
@@ -65,7 +67,9 @@ class TimeStampController extends Controller
                 'start_work' => $now->format('H:i:s'),
                 'day' => $now->toDateString(),
                 'totalwork' => '00:00:00',
+                'is_active' => true,
             ]);
+            
         } elseif ($request->has('end_work')) {
             // 勤務終了ボタンが押された場合の処理
             $today_timestamp = Timestamps::where('user_id', $user_id)
@@ -134,6 +138,8 @@ class TimeStampController extends Controller
             ->whereDate('day', $date)
             ->paginate(5)
             ->appends(['date' => $currentDate]); // 日付情報をページネーションリンクに追加
+            
+            
 
         // 勤務サマリーを計算
         $workSummaries = $timestamps->map(function ($timestamp) {
@@ -160,11 +166,101 @@ class TimeStampController extends Controller
         // 管理画面ビューにデータを渡して表示
         return view('attendance', compact('timestamps', 'workSummaries', 'currentDate', 'previousDate', 'nextDate'));
     }
+
+    // 個人管理画面で勤務時間から休憩時間をマイナスして表示
+    public function individual(Request $request)
+    {
+        // 現在の年月を取得、もしくはリクエストから取得
+        $currentYearMonth = $request->input('date') ?? Carbon::now()->format('Y-m');
+
+        try {
+            $date = Carbon::createFromFormat('Y-m', $currentYearMonth);
+        } catch (\Exception $e) {
+
+        // 例外が発生した場合、現在の年月を使用する
+        $date = Carbon::now()->startOfMonth();
+        $currentYearMonth = $date->format('Y-m');
+        }
+
+        // 前の月と次の月を計算
+        $previousMonth = $date->copy()->subMonth()->format('Y-m');
+        $nextMonth = $date->copy()->addMonth()->format('Y-m');
+
+        // ログイン中のユーザーIDを取得
+        $userId = Auth::id();
+
+         // 指定された月のタイムスタンプを取得し、ページネーションを設定
+        $timestamps = Timestamps::with('breaks', 'user')
+          ->where('user_id', $userId)  // ログイン中のユーザーでフィルタリング
+          ->whereYear('day', $date->year)
+          ->whereMonth('day', $date->month)
+          ->paginate(5)
+          ->appends(['date' => $currentYearMonth]); // 月情報をページネーションリンクに追加
+
+        // 勤務サマリーを計算
+        $workSummaries = $timestamps->map(function ($timestamp) {
+            $breaktime = $timestamp->breaks->reduce(function ($carry, $break) {
+                $startBreak = new Carbon($break->start_break);
+                $endBreak = new Carbon($break->end_break);
+                return $carry + $startBreak->diffInSeconds($endBreak);
+            }, 0);
+
+            $startWork = new Carbon($timestamp->start_work);
+            $endWork = new Carbon($timestamp->end_work);
+            $totalWork = $startWork->diffInSeconds($endWork) - $breaktime;
+
+            // 勤務サマリーを返す
+            return [
+                'day' => Carbon::parse($timestamp->day)->format('Y-m-d'),  // Carbonインスタンスに変換
+                'user' => $timestamp->user->name,
+                'start_work' => $startWork->format('H:i:s'),
+                'end_work' => $endWork->format('H:i:s'),
+                'breaktime' => gmdate('H:i:s', $breaktime),
+                'totalwork' => gmdate('H:i:s', $totalWork),
+            ];
+        }); 
+
+        // 管理画面ビューにデータを渡して表示
+        return view('individual', compact('timestamps', 'workSummaries', 'currentYearMonth', 'previousMonth', 'nextMonth'));
+    }
+
+    // ユーザー一覧ページ表示
+    public function user(Request $request)
+    {
+        $users = User::paginate(5);
+        return view('user', compact('users'));
+    }
     
     // ログアウト処理
     public function logout()
     {
         Auth::logout();
         return redirect()->route('login');
+    }
+
+    // 毎日24時にアクティブな勤務を終了するスケジュールタスクを設定
+    public function scheduleMidnightEndWork(Schedule $schedule)
+    {
+        $schedule->call(function () {
+            $activeTimestamps = Timestamps::where('is_active', true)->get();
+            foreach ($activeTimestamps as $timestamp) {
+                $timestamp->end_work = '23:59:59';
+                $timestamp->is_active = false;
+                $start_work = new Carbon($timestamp->start_work);
+                $total_work_seconds = $start_work->diffInSeconds(Carbon::parse('23:59:59'));
+
+                $breaktime_seconds = $timestamp->breaks->reduce(function ($carry, $break) {
+                    if ($break->end_break) {
+                        $start_break = new Carbon($break->start_break);
+                        $end_break = new Carbon($break->end_break);
+                        return $carry + $start_break->diffInSeconds($end_break);
+                    }
+                    return $carry;
+                }, 0);
+
+                $timestamp->totalwork = gmdate('H:i:s', $total_work_seconds - $breaktime_seconds);
+                $timestamp->save();
+            }
+        })->dailyAt('24:00');
     }
 }
