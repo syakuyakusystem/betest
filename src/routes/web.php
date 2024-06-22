@@ -24,21 +24,19 @@ Route::get('/', function () {
 
 Auth::routes(['verify' => true]);
 
-Route::get('/home', [HomeController::class, 'index'])->middleware(['auth', 'verified'])->name('home');
-
 Route::get('/work', [TimeStampController::class, 'work']);
-Route::post('/work', [TimeStampController::class, 'work'])->name('work');
+Route::post('/work', [TimeStampController::class, 'work'])->middleware(['auth', 'verified'])->name('work');
 
-Route::get('/attendance', [TimeStampController::class, 'attendance'])->name('attendance');
+Route::get('/attendance', [TimeStampController::class, 'attendance'])->middleware(['auth', 'verified'])->name('attendance');
 
 Route::get('/user', [TimeStampController::class, 'user'])->name('user');
-Route::post('/user', [TimeStampController::class, 'user'])->middleware(['auth', 'verified']);
+Route::post('/user', [TimeStampController::class, 'user'])->middleware(['auth', 'verified'])->name('user');
 
 Route::get('/individual', [TimeStampController::class, 'individual'])->name('individual');
-Route::post('/individual', [TimeStampController::class, 'individual'])->middleware(['auth', 'verified']);
+Route::post('/individual', [TimeStampController::class, 'individual'])->middleware(['auth', 'verified'])->name('individual');
 
-Route::get('/home', [TimeStampController::class, 'home']);
-Route::post('/home', [TimeStampController::class, 'home'])->name('home');
+Route::get('/home', [TimeStampController::class, 'home'])->middleware(['auth', 'verified'])->name('home');
+Route::post('/home', [TimeStampController::class, 'home'])->middleware(['auth', 'verified'])->name('home');
 
 Route::post('/logout', [TimeStampController::class, 'logout'])->name('logout');
 

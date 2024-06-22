@@ -13,7 +13,7 @@
 
                         <div class="row mb-3 hederboxrow">
                             <div class="formbox hederboxrow">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror inputbox" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="名前">
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror inputbox" name="name" value="{{ old('name') }}"autocomplete="name" autofocus placeholder="名前">
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -25,7 +25,7 @@
 
                         <div class="row mb-3 hederboxrow">
                             <div class="formbox hederboxrow">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror inputbox" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="メールアドレス">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror inputbox" name="email" value="{{ old('email') }}" autocomplete="email" placeholder="メールアドレス">
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -37,7 +37,7 @@
 
                         <div class="row mb-3 hederboxrow">
                             <div class="formbox hederboxrow">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror inputbox" name="password" required autocomplete="new-password" placeholder="パスワード">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror inputbox" name="password" autocomplete="new-password" placeholder="パスワード">
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -49,7 +49,7 @@
 
                         <div class="row mb-3 hederboxrow">
                             <div class="formbox hederboxrow">
-                                <input id="password-confirm" type="password" class="form-control inputbox" name="password_confirmation" required autocomplete="new-password" placeholder="確認用パスワード">
+                                <input id="password-confirm" type="password" class="form-control inputbox" name="password_confirmation" autocomplete="new-password" placeholder="確認用パスワード">
                             </div>
                         </div>
 
