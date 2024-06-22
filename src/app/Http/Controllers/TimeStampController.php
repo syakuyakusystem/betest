@@ -21,6 +21,7 @@ class TimeStampController extends Controller
     // ホーム画面表示
     public function home()
     {
+        $this->middleware('auth');
         // 現在の日付を取得
         $now_date = Carbon::now()->format('Y-m-d');
         // 現在のユーザーIDを取得
@@ -40,7 +41,9 @@ class TimeStampController extends Controller
             if ($break) {
                 $status = 2;
             }
+            
         }
+      
         // ステータスをビューに渡す
         return view('home', compact('status'));
     }
@@ -97,6 +100,7 @@ class TimeStampController extends Controller
                     'start_break' => $now,
                     'breaktime' => null,
                 ]);
+                
             }
         } elseif ($request->has('end_break')) {
             // 休憩終了ボタンが押された場合の処理

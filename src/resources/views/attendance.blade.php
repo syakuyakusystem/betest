@@ -2,7 +2,10 @@
 
 @section('common')
 <div class="container">
- <div class="attendance">
+  <div class="attendance">
+
+   <h5 class="titlebox">全体勤怠表</h5>
+
     <div class="d-flex justify-content-between mb-4">
       <form action="{{ route('attendance') }}" method="get">
         <input type="hidden" name="date" value="{{ $previousDate }}">
@@ -40,9 +43,6 @@
     </div>
  </div>
 </div>
-
-
-
 
 @endsection
 

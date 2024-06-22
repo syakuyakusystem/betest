@@ -28,7 +28,7 @@
 
                         <div class="row mb-3 hederboxrow">
                             <div class="formbox">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror inputbox" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="メールアドレス">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror inputbox" name="email" value="{{ old('email') }}" autocomplete="email" autofocus placeholder="メールアドレス">
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -40,7 +40,7 @@
 
                         <div class="row mb-3 hederboxrow">
                             <div class="formbox">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror inputbox" name="password" required autocomplete="current-password" placeholder="パスワード">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror inputbox" name="password" autocomplete="current-password" placeholder="パスワード">
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">

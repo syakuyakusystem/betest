@@ -30,7 +30,7 @@ button {
     border: none;
     background-color: white;
     padding: 50px 118px;
-    
+
 }
 
 .attendancetable th {
@@ -120,4 +120,94 @@ button {
 
 .titlebox {
     text-align: center;
+}
+
+
+/* ナビゲーションメニューの初期状態を非表示にする */
+.nav {
+    box-sizing: border-box;
+    position: fixed;
+    top: 60px;
+    display: none;
+    /* 最初は非表示にする */
+    width: 100%;
+    height: calc(100% - 60px);
+    background: #fff;
+    opacity: 0.9;
+    z-index: 1000;
+    /* 前面に表示する */
+    right: 0;
+    transition: right .5s;
+}
+
+/* メニューが表示されるときのスタイル */
+.nav.open {
+    display: block;
+    /* メニューが開くときに表示 */
+}
+
+/* メニューのリストスタイル */
+.nav ul {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* メニューのリンクスタイル */
+.nav ul li {
+    margin: 10px 0;
+}
+
+.nav ul li a {
+    display: block;
+    padding: 15px 25px;
+    border-radius: 5px;
+    color: #666;
+    font-size: 1.2rem;
+    text-align: center;
+    text-decoration: none;
+}
+
+/* ボタン */
+.humbergermenu {
+    left: 0;
+    height: 1px;
+    width: 28px;
+    background-color: #444;
+    border-radius: 2px;
+    display: inline-block;
+    box-sizing: border-box;
+    margin: 6px;
+}
+
+.humbergertag {
+    font-size: 10px;
+    display: flex;
+    margin-left: 5px;
+}
+
+#drawer_toggle.open span {
+    top: 29px;
+    left: 14px;
+    width: 35px;
+    margin: 0;
+}
+
+#drawer_toggle.open span:first-child {
+    transform: rotate(45deg);
+    margin-bottom: 7px;
+    margin-right: -40px;
+}
+
+#drawer_toggle.open span:nth-child(2) {
+    display: none;
+}
+
+#drawer_toggle.open span:last-child {
+    transform: rotate(-45deg);
+    margin-bottom: 7px;
 }
