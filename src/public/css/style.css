@@ -1,38 +1,76 @@
-.py-4 {
-    background-color: rgb(242, 242, 242);
+.navbar-brand,
+.fotter {
+    font-family: "Playwrite AU SA", cursive;
+    font-optical-sizing: auto;
+    font-weight: <weight>;
+    font-style: normal;
 }
 
+.app {
+    font-family: "Sawarabi Mincho", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* 全体背景 */
+.py-4 {
+    /* background-color: rgb(242, 242, 242); */
+    background: -moz-linear-gradient(top right, #94ffe8, #3498db, #08009c);
+    background: -webkit-linear-gradient(top right, #94ffe8, #3498db, #08009c);
+    background: linear-gradient(to bottom left, #94ffe8, #3498db, #08009c);
+    height: 500px;
+}
+
+/* common全体メニューバー */
 .menu {
     display: flex;
     justify-content: end;
 }
 
+/* common appフッター */
 .fotter {
     text-align: center;
 }
 
-.utf-8 {
+/* .utf-8 {
     text-align: center !important;
+} */
+
+/* ヘッダータイトル */
+.titlea {
+    color: #27acd9;
 }
 
+/* home～さんお疲れ様です表示*/
 .nav-link {
     text-align: center;
     border-top: none !important;
     color: black !important;
 }
 
-table {
+/* register login attendance individual user home edit文字色 */
+.username {
+    color: white !important;
+}
+
+.pwdlnk {
+    text-align: center;
+    color: aqua;
+}
+
+/* home user individual attendance テーブル */
+.attetable {
     display: flex;
     justify-content: center;
 }
 
-button {
+/* register login attendance individual homeボタン */
+.attebtn {
     border: none;
     background-color: white;
-    padding: 50px 118px;
-
 }
 
+/* user individual attendanceテーブル */
 .attendancetable th {
     text-align: inherit;
     width: 200px;
@@ -40,6 +78,7 @@ button {
     border-bottom: solid 1px darkslateblue;
 }
 
+/* user individual attendanceテーブル */
 .attendancebox td {
     text-align: inherit;
     width: 200px;
@@ -47,79 +86,129 @@ button {
     border-bottom: solid 1px darkslateblue;
 }
 
+/* attendance individual user ページネーション */
 .pagination svg.w-5.h-5 {
     /*paginateメソッドの矢印の大きさ調整のために追加*/
     width: 10px;
     height: 10px;
-
 }
 
+/* attendance individual user ページネーション */
 .pagination {
     justify-content: center;
 }
 
+.page-link {
+    border-radius: 50px 50px 50px 50px;
+    margin-right: 10px;
+    margin-top: 10px;
+    height: 80%;
+}
+
+.pagination span {
+    border-radius: 50px 50px 50px 50px !important;
+    height: 80%;
+}
+
+.pagination a {
+    border-radius: 50px 50px 50px 50px !important;
+    height: 80%;
+}
+
+/* individual attendance月別日別表示 */
 .justify-content-between {
     justify-content: center !important;
 }
 
+/* individual attendance月別日別カーボン表示 */
 .carbonbox {
     margin: 5px;
     margin-left: 15px;
     margin-right: 15px;
-
 }
 
+/* individual attendanceページネーション矢印 */
 .attendancebutton {
-    color: #007bff;
-    width: 50px;
-    height: 28px;
-    background-color: white;
+
+    border-radius: 20px 20px 20px 20px;
+    background-color: #51b7df;
 }
 
-.hederbox {
+.hederbox,
+.addbtn,
+.bluelink,
+.titlebox {
     text-align: center;
 }
 
+/* login register 画面div */
 .hederboxrow {
     justify-content: center;
 }
 
+/* login register こちらからテキスト */
 .textlink {
     text-align: center;
     margin-top: 30px;
     color: rgb(153, 149, 140);
 }
 
-.bluelink {
-    text-align: center;
-}
-
+/* login register リンク */
 .underline {
     text-align: center;
-    width: 400px;
+    color: aqua;
 }
 
-.addbtn {
+/* attendance individual カレンダー表示切替ボタン */
+.calendar {
     text-align: center;
+    margin-top: 6px;
+    margin-left: 15px;
 }
 
+/* attendance individual 入力ボックス */
 .inputbox {
     background-color: rgb(242, 242, 242);
-    width: 400px;
+    width: 100%;
     color: rgb(153, 149, 140);
     border: 1px solid rgb(153, 149, 140);
 }
 
+/* app common タイトルatte */
 .navbar-brand {
     font-size: 23px;
 }
 
-.cardbox {
-    margin: 10px 10px;
+/* メニューをアニメーションより前面へ */
+.navbar {
+    z-index: 2;
 }
 
-.titlebox {
+/* login register ログイン、会員登録ボタン */
+.loginbtn {
+    color: #fff;
+    background-color: #575d63;
+    border-color: #007bff;
+    border-radius: 10px 10px 10px 10px;
+}
+
+/* login 入力フォームボタン大きさ */
+.formbox {
+    width: 400px;
+}
+
+
+
+
+
+
+/* ハンバーガーメニュー */
+.cardbox {
+    margin: 10px 10px;
+    height: 120px;
     text-align: center;
+    justify-content: center;
+    border-radius: 20px 20px 20px 20px;
 }
 
 
@@ -138,6 +227,7 @@ button {
     /* 前面に表示する */
     right: 0;
     transition: right .5s;
+    background-color: lavender;
 }
 
 /* メニューが表示されるときのスタイル */
@@ -170,6 +260,7 @@ button {
     font-size: 1.2rem;
     text-align: center;
     text-decoration: none;
+    border-radius: 50px 50px 50px 50px;
 }
 
 /* ボタン */
@@ -185,9 +276,10 @@ button {
 }
 
 .humbergertag {
-    font-size: 10px;
+    font-size: 11px;
     display: flex;
     margin-left: 5px;
+    margin-top: 2px;
 }
 
 #drawer_toggle.open span {
@@ -210,4 +302,264 @@ button {
 #drawer_toggle.open span:last-child {
     transform: rotate(-45deg);
     margin-bottom: 7px;
+}
+
+.navbar-toggler {
+    outline: none;
+    border-radius: 50px 50px 50px 50px;
+}
+
+.spelspan {
+    color: lightblue;
+}
+
+
+
+
+
+
+
+/* ホームボタン */
+.card-bodybox {
+    white-space: nowrap;
+}
+
+.card-th {
+    width: 400px;
+}
+
+.homebutton {
+    width: 220px;
+    height: 110px;
+    vertical-align: middle;
+    text-decoration: none;
+    border-radius: 5vh;
+    border: 1px solid #999;
+    box-shadow: 0 1px 2px 0.3px #333;
+    transition: 0.5s;
+    background: linear-gradient(to top, #9fc1cb, #f9fffe);
+}
+
+
+
+
+
+
+/* individual attendance 表示ボタン */
+.individualbutton {
+
+    text-align: center;
+    vertical-align: middle;
+    text-decoration: none;
+    width: 60px;
+    margin: auto;
+    font-weight: bold;
+    border-radius: 0.3rem;
+    border-bottom: 3px solid #0686b2;
+    background: #27acd9;
+    color: #fff;
+}
+
+
+
+
+
+/* 個人勤怠管理画面更新ボタン 更新画面更新ボタン */
+.updatebutton {
+    width: 50px;
+    background: linear-gradient(to top, rgb(5, 130, 174), #27acd9);
+    color: #fff;
+    border-radius: 20px 20px 20px 20px;
+}
+
+/* 個人勤怠管理画面削除ボタン */
+.deletebutton {
+    width: 50px;
+    background: linear-gradient(to top, rgb(174, 5, 84), #ee747a);
+    color: #fff;
+    border-radius: 20px 20px 20px 20px;
+}
+
+
+
+
+
+
+/* 背景アニメーション */
+.area {
+    width: 100%;
+    height: 100%;
+
+
+}
+
+.circles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.circles li {
+    position: absolute;
+    display: block;
+    list-style: none;
+    width: 20px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    animation: animate 25s linear infinite;
+    bottom: -150px;
+
+}
+
+.circles li:nth-child(1) {
+    left: 25%;
+    width: 80px;
+    height: 80px;
+    animation-delay: 0s;
+}
+
+
+.circles li:nth-child(2) {
+    left: 10%;
+    width: 20px;
+    height: 20px;
+    animation-delay: 2s;
+    animation-duration: 12s;
+}
+
+.circles li:nth-child(3) {
+    left: 70%;
+    width: 20px;
+    height: 20px;
+    animation-delay: 4s;
+}
+
+.circles li:nth-child(4) {
+    left: 40%;
+    width: 60px;
+    height: 60px;
+    animation-delay: 0s;
+    animation-duration: 18s;
+}
+
+.circles li:nth-child(5) {
+    left: 65%;
+    width: 20px;
+    height: 20px;
+    animation-delay: 0s;
+}
+
+.circles li:nth-child(6) {
+    left: 75%;
+    width: 110px;
+    height: 110px;
+    animation-delay: 3s;
+}
+
+.circles li:nth-child(7) {
+    left: 35%;
+    width: 150px;
+    height: 150px;
+    animation-delay: 7s;
+}
+
+.circles li:nth-child(8) {
+    left: 50%;
+    width: 25px;
+    height: 25px;
+    animation-delay: 15s;
+    animation-duration: 45s;
+}
+
+.circles li:nth-child(9) {
+    left: 20%;
+    width: 15px;
+    height: 15px;
+    animation-delay: 2s;
+    animation-duration: 35s;
+}
+
+.circles li:nth-child(10) {
+    left: 85%;
+    width: 150px;
+    height: 150px;
+    animation-delay: 0s;
+    animation-duration: 11s;
+}
+
+@keyframes animate {
+
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+        border-radius: 0;
+    }
+
+    100% {
+        transform: translateY(-1000px) rotate(720deg);
+        opacity: 0;
+        border-radius: 50%;
+    }
+
+}
+
+
+/* 個人勤怠管理更新確認ページ */
+.edittable {
+    margin-top: 40px;
+    color: white;
+}
+
+.editday {
+    width: 80%;
+}
+
+.editipt {
+    margin-left: 50px;
+    margin-bottom: 20px;
+    background: linear-gradient(to top, #9bcad9, #d4f1eb);
+    border-radius: 20px 20px 20px 20px;
+    border: none;
+}
+
+.editwork {
+    width: 80%;
+}
+
+.editbtn {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.updatebtn {
+    width: 50px;
+    background: linear-gradient(to top, rgb(28 91 113), #27acd9);
+    color: #fff;
+    border-radius: 20px 20px 20px 20px;
+}
+
+.backbtn {
+    width: 50px;
+    background: linear-gradient(to top, #1d632d, #2cc74f);
+    color: #fff;
+    border-radius: 20px 20px 20px 20px;
+}
+
+
+
+
+/* カレンダー入力欄 */
+.calendarlabel {
+    border-radius: 10px 10px 10px 10px;
+    border: none;
+    color: rosybrown;
+}
+
+
+/* ホームメニュー背景 */
+.dropdown-item {
+    border-radius: 50px 50px 50px 50px;
 }
