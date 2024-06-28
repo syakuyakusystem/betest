@@ -159,6 +159,7 @@ class TimeStampController extends Controller
 
             // 勤務サマリーを返す
             return [
+                'id' => $timestamp->id, 
                 'user' => $timestamp->user->name,
                 'start_work' => $startWork->format('H:i:s'),
                 'end_work' => $endWork->format('H:i:s'),
@@ -215,6 +216,7 @@ class TimeStampController extends Controller
 
             // 勤務サマリーを返す
             return [
+                'id' => $timestamp->id,
                 'day' => Carbon::parse($timestamp->day)->format('Y-m-d'),  // Carbonインスタンスに変換
                 'user' => $timestamp->user->name,
                 'start_work' => $startWork->format('H:i:s'),
@@ -240,31 +242,5 @@ class TimeStampController extends Controller
     {
         Auth::logout();
         return redirect()->route('login');
-    }
-
-    // 毎日24時にアクティブな勤務を終了するスケジュールタスクを設定
-    public function scheduleMidnightEndWork(Schedule $schedule)
-    {
-        $schedule->call(function () {
-            $activeTimestamps = Timestamps::where('is_active', true)->get();
-            foreach ($activeTimestamps as $timestamp) {
-                $timestamp->end_work = '23:59:59';
-                $timestamp->is_active = false;
-                $start_work = new Carbon($timestamp->start_work);
-                $total_work_seconds = $start_work->diffInSeconds(Carbon::parse('23:59:59'));
-
-                $breaktime_seconds = $timestamp->breaks->reduce(function ($carry, $break) {
-                    if ($break->end_break) {
-                        $start_break = new Carbon($break->start_break);
-                        $end_break = new Carbon($break->end_break);
-                        return $carry + $start_break->diffInSeconds($end_break);
-                    }
-                    return $carry;
-                }, 0);
-
-                $timestamp->totalwork = gmdate('H:i:s', $total_work_seconds - $breaktime_seconds);
-                $timestamp->save();
-            }
-        })->dailyAt('24:00');
     }
 }

@@ -1,13 +1,24 @@
 @extends('layouts.common')
 
 @section('common')
-<div>
- <div>
-    
- <h5 class="titlebox">ユーザーページ</h5>
+<div class="container area">
+  <ul class="circles">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+  <div>
+    <div>    
+      <h5 class="titlebox username">ユーザーページ</h5>
 
-
- <table>
+      <table class="attetable username">
       <tr class="attendancetable">
         <th>名前</th>
         <th>メールアドレス</th>
@@ -19,12 +30,12 @@
         <td>{{ $user->email }}</td>
       </tr> 
       @endforeach
-    </table>
+      </table>
 
-    <div class="pagination">
-      <p class="pagination">{{ $users->links() }}</p>
+      <div class="pagination">
+        <p class="pagination">{{ $users->links() }}</p>
+      </div>    
     </div>
-    
- </div>
-</div>
+  </div>
+</div >
 @endsection

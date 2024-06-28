@@ -18,28 +18,31 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes(['verify' => true]);
 
+// 勤怠管理計算表示
 Route::get('/work', [TimeStampController::class, 'work']);
 Route::post('/work', [TimeStampController::class, 'work'])->middleware(['auth', 'verified'])->name('work');
 
+// 全体勤怠管理表示
 Route::get('/attendance', [TimeStampController::class, 'attendance'])->middleware(['auth', 'verified'])->name('attendance');
 
+// ユーザー一覧ページ表示
 Route::get('/user', [TimeStampController::class, 'user'])->name('user');
 Route::post('/user', [TimeStampController::class, 'user'])->middleware(['auth', 'verified'])->name('user');
 
+// 個人勤怠管理ページ表示
 Route::get('/individual', [TimeStampController::class, 'individual'])->name('individual');
 Route::post('/individual', [TimeStampController::class, 'individual'])->middleware(['auth', 'verified'])->name('individual');
 
+// ホーム画面表示
 Route::get('/home', [TimeStampController::class, 'home'])->middleware(['auth', 'verified'])->name('home');
 Route::post('/home', [TimeStampController::class, 'home'])->middleware(['auth', 'verified'])->name('home');
 
+// ログアウトボタン
 Route::post('/logout', [TimeStampController::class, 'logout'])->name('logout');
 
+// メール認証
 Route::get('sample/mail', 'SampleController@mail');
 
 // メール確認通知ビュー
