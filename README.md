@@ -34,8 +34,14 @@ https://github.com/syakuyakusystem/beginner-case
 # 環境構築
 Dockerビルド
 1. `git clone git@github.com:syakuyakusystem/beginner-case.git`
-2. DockerDesktopアプリを立ち上げる
-3. `docker-composer up -d --build`
+2. 任意の名前でローカルリポジトリの作成
+3. `git remote set-url origin 作成したリポジトリのurl`
+4. `git add .`
+5. `git commit -m "リモートリポジトリの変更"`
+6. `git push origin main`
+7. DockerDesktopアプリを立ち上げる
+8. `docker-composer up -d --build`
+9. DockerDesktopアプリでコンテナが作成されているか確認
 ### Laravel環境構築
 1. `docker-composer exec php bash`
 2. `composer install`
@@ -47,6 +53,15 @@ DB_PORT=3306
 DB_DATABASE=laravel_db
 DB_USERNAME=laravel_user
 DB_PASSWORD=laravel_pass
+
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.gmail.com
+MAIL_PORT=587
+MAIL_USERNAME=任意のメールアドレス
+MAIL_PASSWORD=ssuhrftvrqfewmqc
+MAIL_ENCRYPTION=tls
+MAIL_FROM_ADDRESS="任意のメールアドレス"
+MAIL_FROM_NAME="${APP_NAME}"
 ```
 5. アプリケーションキーの作成
 ```
