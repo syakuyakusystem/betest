@@ -71,7 +71,7 @@
 }
 
 /* user individual attendanceテーブル */
-.attendancetable th {
+.tableth {
     text-align: inherit;
     width: 200px;
     height: 50px;
@@ -79,12 +79,14 @@
 }
 
 /* user individual attendanceテーブル */
-.attendancebox td {
+.tabletd {
     text-align: inherit;
     width: 200px;
     height: 50px;
     border-bottom: solid 1px darkslateblue;
 }
+
+
 
 /* attendance individual user ページネーション */
 .pagination svg.w-5.h-5 {
@@ -114,6 +116,9 @@
     border-radius: 50px 50px 50px 50px !important;
     height: 80%;
 }
+
+
+
 
 /* individual attendance月別日別表示 */
 .justify-content-between {

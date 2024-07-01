@@ -24,20 +24,20 @@
 
     <table class="attetable">
       <tr class="attendancetable username">
-        <th>日付</th>
-        <th>勤務開始</th>
-        <th>勤務終了</th>
-        <th>休憩時間</th>
-        <th>勤務時間</th>
+        <th class="tableth">日付</th>
+        <th class="tableth">勤務開始</th>
+        <th class="tableth">勤務終了</th>
+        <th class="tableth">休憩時間</th>
+        <th class="tableth">勤務時間</th>
       </tr>
 
       @foreach($workSummaries as $summary)
       <tr class="attendancebox username">
-        <td>{{ $summary['day'] }}</td>
-        <td>{{ $summary['start_work'] }}</td>
-        <td>{{ $summary['end_work'] }}</td>
-        <td>{{ $summary['breaktime'] }}</td>
-        <td>{{ $summary['totalwork'] }}</td>
+        <td class="tabletd">{{ $summary['day'] }}</td>
+        <td class="tabletd">{{ $summary['start_work'] }}</td>
+        <td class="tabletd">{{ $summary['end_work'] }}</td>
+        <td class="tabletd">{{ $summary['breaktime'] }}</td>
+        <td class="tabletd">{{ $summary['totalwork'] }}</td>
       </tr>
       @endforeach 
     </table>
@@ -55,21 +55,21 @@
     //更新処理モーダルの開閉処理
      $(function(){
         $("#modal-open").click(
-	        function(){
-    	    //キーボード操作などにより、オーバーレイが多重起動するのを防止する
+	      function(){
+    	  //キーボード操作などにより、オーバーレイが多重起動するのを防止する
           $(this).blur() ;	//ボタンからフォーカスを外す
           if($("#modal-overlay")[0]) return false ;		//新しくモーダルウィンドウを起動しない [下とどちらか選択]
-          //if($("#modal-overlay")[0]) $("#modal-overlay").remove() ;		//現在のモーダルウィンドウを削除して新しく起動する [上とどちらか選択]
+        //if($("#modal-overlay")[0]) $("#modal-overlay").remove() ;		//現在のモーダルウィンドウを削除して新しく起動する [上とどちらか選択]
 
-          //オーバーレイ用のHTMLコードを、[body]内の最後に生成する
+        //オーバーレイ用のHTMLコードを、[body]内の最後に生成する
           $("body").append('<div id="modal-overlay"></div>');
 
-          //[$modal-overlay]をフェードインさせる
+        //[$modal-overlay]をフェードインさせる
           $("#modal-overlay").fadeIn("slow");
 
-          //[$modal-content]をフェードインさせる
+        //[$modal-content]をフェードインさせる
           $("#modal-content").fadeIn("slow");
-	        })
+        })
       });
   </script>
 @endsection

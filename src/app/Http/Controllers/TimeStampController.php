@@ -40,8 +40,7 @@ class TimeStampController extends Controller
             $break = Breaks::where('timestamps_id', $confirm_date->id)->whereNotNull('start_break')->whereNull('end_break')->first();
             if ($break) {
                 $status = 2;
-            }
-            
+            }           
         }
       
         // ステータスをビューに渡す
@@ -99,8 +98,7 @@ class TimeStampController extends Controller
                     'timestamps_id' => $today_timestamp->id,
                     'start_break' => $now,
                     'breaktime' => null,
-                ]);
-                
+                ]);                
             }
         } elseif ($request->has('end_break')) {
             // 休憩終了ボタンが押された場合の処理
@@ -141,9 +139,7 @@ class TimeStampController extends Controller
         $timestamps = Timestamps::with('breaks', 'user')
             ->whereDate('day', $date)
             ->paginate(5)
-            ->appends(['date' => $currentDate]); // 日付情報をページネーションリンクに追加
-            
-            
+            ->appends(['date' => $currentDate]); // 日付情報をページネーションリンクに追加                      
 
         // 勤務サマリーを計算
         $workSummaries = $timestamps->map(function ($timestamp) {
