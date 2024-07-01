@@ -71,20 +71,22 @@
 }
 
 /* user individual attendanceテーブル */
-.attendancetable th {
+.tableth {
+    text-align: inherit;
+    width: 200px;
+    height: 50px;
+    border-bottom: solid 1px darkslateblue;   
+}
+
+/* user individual attendanceテーブル */
+.tabletd {
     text-align: inherit;
     width: 200px;
     height: 50px;
     border-bottom: solid 1px darkslateblue;
 }
 
-/* user individual attendanceテーブル */
-.attendancebox td {
-    text-align: inherit;
-    width: 200px;
-    height: 50px;
-    border-bottom: solid 1px darkslateblue;
-}
+
 
 /* attendance individual user ページネーション */
 .pagination svg.w-5.h-5 {
@@ -114,6 +116,9 @@
     border-radius: 50px 50px 50px 50px !important;
     height: 80%;
 }
+
+
+
 
 /* individual attendance月別日別表示 */
 .justify-content-between {
@@ -196,6 +201,7 @@
 .formbox {
     width: 400px;
 }
+
 
 
 
@@ -319,6 +325,7 @@
 
 
 
+
 /* ホームボタン */
 .card-bodybox {
     white-space: nowrap;
@@ -345,6 +352,7 @@
 
 
 
+
 /* individual attendance 表示ボタン */
 .individualbutton {
 
@@ -359,6 +367,8 @@
     background: #27acd9;
     color: #fff;
 }
+
+
 
 
 
@@ -379,6 +389,7 @@
     color: #fff;
     border-radius: 20px 20px 20px 20px;
 }
+
 
 
 

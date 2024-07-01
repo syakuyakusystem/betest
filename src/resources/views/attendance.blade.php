@@ -26,19 +26,19 @@
           
     <table class="attetable">
       <tr class="attendancetable username">
-        <th>名前</th>
-        <th>勤務開始</th>
-        <th>勤務終了</th>
-        <th>休憩時間</th>
-        <th>勤務時間</th>
+        <th class="tableth">名前</th>
+        <th class="tableth">勤務開始</th>
+        <th class="tableth">勤務終了</th>
+        <th class="tableth">休憩時間</th>
+        <th class="tableth">勤務時間</th>
       </tr>
     @foreach($workSummaries as $summary)
       <tr class="attendancebox username">
-        <td>{{ $summary['user'] }}</td>
-        <td>{{ $summary['start_work'] }}</td>
-        <td>{{ $summary['end_work'] }}</td>
-        <td>{{ $summary['breaktime'] }}</td>
-        <td>{{ $summary['totalwork'] }}</td>
+        <td class="tabletd">{{ $summary['user'] }}</td>
+        <td class="tabletd">{{ $summary['start_work'] }}</td>
+        <td class="tabletd">{{ $summary['end_work'] }}</td>
+        <td class="tabletd">{{ $summary['breaktime'] }}</td>
+        <td class="tabletd">{{ $summary['totalwork'] }}</td>
       </tr>
     @endforeach 
     </table>

@@ -19,17 +19,16 @@
       <h5 class="titlebox username">ユーザーページ</h5>
 
       <table class="attetable username">
-      <tr class="attendancetable">
-        <th>名前</th>
-        <th>メールアドレス</th>
-      </tr>
-
-      @foreach ($users as $user)
-      <tr class="attendancebox">
-        <td>{{ $user->name }}</td>
-        <td>{{ $user->email }}</td>
-      </tr> 
-      @endforeach
+        <tr class="attendancetable">
+          <th class="tableth">名前</th>
+          <th class="tableth">メールアドレス</th>
+        </tr>
+        @foreach ($users as $user)
+          <tr class="attendancebox">
+            <td class="tabletd">{{ $user->name }}</td>
+            <td class="tabletd">{{ $user->email }}</td>
+          </tr> 
+        @endforeach
       </table>
 
       <div class="pagination">
