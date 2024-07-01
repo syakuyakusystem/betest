@@ -75,7 +75,7 @@
     text-align: inherit;
     width: 200px;
     height: 50px;
-    border-bottom: solid 1px darkslateblue;
+    border-bottom: solid 1px darkslateblue;   
 }
 
 /* user individual attendanceテーブル */
@@ -207,6 +207,7 @@
 
 
 
+
 /* ハンバーガーメニュー */
 .cardbox {
     margin: 10px 10px;
@@ -324,6 +325,7 @@
 
 
 
+
 /* ホームボタン */
 .card-bodybox {
     white-space: nowrap;
@@ -350,6 +352,7 @@
 
 
 
+
 /* individual attendance 表示ボタン */
 .individualbutton {
 
@@ -364,6 +367,8 @@
     background: #27acd9;
     color: #fff;
 }
+
+
 
 
 
@@ -384,6 +389,7 @@
     color: #fff;
     border-radius: 20px 20px 20px 20px;
 }
+
 
 
 
