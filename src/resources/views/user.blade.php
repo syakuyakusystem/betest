@@ -17,7 +17,6 @@
   <div>
     <div>    
       <h5 class="titlebox username">ユーザーページ</h5>
-
       <table class="attetable username">
         <tr class="attendancetable">
           <th class="tableth">名前</th>
@@ -30,7 +29,6 @@
           </tr> 
         @endforeach
       </table>
-
       <div class="pagination">
         <p class="pagination">{{ $users->links() }}</p>
       </div>    

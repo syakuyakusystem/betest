@@ -7,9 +7,10 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <!-- タイトル -->
     <title>Atte</title>
 
-    <!-- Scripts -->
+    <!-- スクリプト -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- フォント -->
