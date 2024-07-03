@@ -18,9 +18,9 @@
   <div class="row justify-content-center">
     <div class="col-md-8">
 
-    <a id="navbarDropdown" class="nav-link username" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+      <a id="navbarDropdown" class="nav-link username" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
       {{ Auth::user()->name }}さんお疲れ様です
-    </a>
+      </a>
      
       <table class="attetable">       
         <tr>
@@ -91,6 +91,5 @@
     </div>      
   </div>
 </div>
-</div >
 @endsection
 

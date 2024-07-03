@@ -41,8 +41,7 @@ class TimeStampController extends Controller
             if ($break) {
                 $status = 2;
             }           
-        }
-      
+        }     
         // ステータスをビューに渡す
         return view('home', compact('status'));
     }
@@ -70,8 +69,7 @@ class TimeStampController extends Controller
                 'day' => $now->toDateString(),
                 'totalwork' => '00:00:00',
                 'is_active' => true,
-            ]);
-            
+            ]);            
         } elseif ($request->has('end_work')) {
             // 勤務終了ボタンが押された場合の処理
             $today_timestamp = Timestamps::where('user_id', $user_id)
@@ -85,7 +83,6 @@ class TimeStampController extends Controller
                 $today_timestamp->totalwork = $start_work->diff($now)->format('%H:%I:%S');
                 $today_timestamp->save();
             }
-
         } elseif ($request->has('start_break')) {
             // 休憩開始ボタンが押された場合の処理
             $today_timestamp = Timestamps::where('user_id', $user_id)
@@ -163,7 +160,6 @@ class TimeStampController extends Controller
                 'totalwork' => gmdate('H:i:s', $totalWork),
             ];
         });
-
         // 管理画面ビューにデータを渡して表示
         return view('attendance', compact('timestamps', 'workSummaries', 'currentDate', 'previousDate', 'nextDate'));
     }
@@ -190,7 +186,7 @@ class TimeStampController extends Controller
         // ログイン中のユーザーIDを取得
         $userId = Auth::id();
 
-         // 指定された月のタイムスタンプを取得し、ページネーションを設定
+        // 指定された月のタイムスタンプを取得し、ページネーションを設定
         $timestamps = Timestamps::with('breaks', 'user')
           ->where('user_id', $userId)  // ログイン中のユーザーでフィルタリング
           ->whereYear('day', $date->year)
@@ -221,7 +217,6 @@ class TimeStampController extends Controller
                 'totalwork' => gmdate('H:i:s', $totalWork),
             ];
         }); 
-
         // 管理画面ビューにデータを渡して表示
         return view('individual', compact('timestamps', 'workSummaries', 'currentYearMonth', 'previousMonth', 'nextMonth'));
     }

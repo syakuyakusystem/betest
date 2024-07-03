@@ -3,9 +3,7 @@
 @section('common')
 <div>
   <div>
-
-    <h5 class="titlebox username">{{ Auth::user()->name }}さんの勤怠表</h5>
-    
+    <h5 class="titlebox username">{{ Auth::user()->name }}さんの勤怠表</h5>   
     <div class="d-flex justify-content-between mb-4">
       <form action="{{ route('individual') }}" method="get">
         <input type="hidden" name="date" value="{{ $previousMonth }}">
@@ -44,8 +42,7 @@
 
     <div class="pagination">
       <p class="pagination">{{ $timestamps->appends(['date' => $currentYearMonth])->links() }}</p>
-    </div>
-    
+    </div>    
   </div>
 </div>
 

@@ -75,7 +75,7 @@
     text-align: inherit;
     width: 200px;
     height: 50px;
-    border-bottom: solid 1px darkslateblue;   
+    border-bottom: solid 1px darkslateblue;
 }
 
 /* user individual attendanceテーブル */
@@ -85,6 +85,8 @@
     height: 50px;
     border-bottom: solid 1px darkslateblue;
 }
+
+
 
 
 
@@ -116,6 +118,8 @@
     border-radius: 50px 50px 50px 50px !important;
     height: 80%;
 }
+
+
 
 
 
@@ -558,8 +562,6 @@
     color: #fff;
     border-radius: 20px 20px 20px 20px;
 }
-
-
 
 
 /* カレンダー入力欄 */
